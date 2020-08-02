@@ -50,6 +50,8 @@ their descriptions can be seen in `values.yaml`. The [full compose file](https:/
 
 > **Tip**: You can use the default [values.yaml](values.yaml)
 
+Here are the most common:
+
 |             Parameter               |            Description              |                    Default                |
 |-------------------------------------|-------------------------------------|-------------------------------------------|
 | `replicaCount`                      | Number of replicas                  | `1`                                       |
