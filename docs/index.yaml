@@ -1,3 +1,22 @@
 apiVersion: v1
-entries: {}
-generated: "2020-08-01T22:37:41.494858195-04:00"
+entries:
+  wekan:
+  - apiVersion: v2
+    appVersion: "4.22"
+    created: "2020-08-01T22:42:45.66237146-04:00"
+    description: Wekan is an completely Open Source and Free software collaborative
+      kanban board application with MIT license.
+    digest: e8b74ac8616466315609c386113033a4c28d913f56146556b51f24e617860f2f
+    home: https://wekan.github.io/
+    icon: https://wekan.github.io/wekan-logo.svg
+    keywords:
+    - wekan
+    - kanban
+    - kanboard
+    name: wekan
+    sources:
+    - https://github.com/Gabisonfire/wekan-helm-chart
+    urls:
+    - https://gabisonfire.github.io/charts/wekan-0.1.0.tgz
+    version: 0.1.0
+generated: "2020-08-01T22:42:45.661689762-04:00"
