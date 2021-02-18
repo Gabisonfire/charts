@@ -22,6 +22,7 @@ entries:
   raneto: 
   - apiVersion: v2
     appVersion: "0.16.6"
+    created: "2021-02-18T00:05:45.66237146-04:00"
     name: raneto
     description: "Raneto is an open source Knowledgebase platform that uses static Markdown files to power your Knowledgebase."
     version: 0.1.0
