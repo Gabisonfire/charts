@@ -1,0 +1,16 @@
+apiVersion: v2
+name: raneto
+description: "Raneto is an open source Knowledgebase platform that uses static Markdown files to power your Knowledgebase."
+version: 0.1.0
+appVersion: 4.22
+home: http://raneto.com/
+icon: https://github.com/gilbitron/Raneto/blob/master/logo/logo.pnghttps://wekan.github.io/wekan-logo.svg
+keywords:
+  - raneto
+  - flatfile
+  - wiki
+  - knowledgebase
+sources: 
+  - https://github.com/Gabisonfire/charts/raneto
+maintainer:
+  - name: Gabisonfire

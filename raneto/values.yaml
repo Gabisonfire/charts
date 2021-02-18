@@ -1,0 +1,123 @@
+# Default values for wekan.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: ghcr.io/linuxserver/raneto
+  pullPolicy: IfNotPresent
+  tag: "version-0.16.6"
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+strategy: {}
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: ClusterIP
+  port: 3000
+
+ingress:
+  enabled: false
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: chart-example.local
+      paths: []
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+persistence:
+  # Persistence for the config/content folder (Markdown files)
+  content:
+    enabled: true
+    # storageClass: "-"
+    accessMode: ReadWriteOnce
+    size: 8Gi
+
+  # Persistence for the config/images folder (Images)
+  images:
+    enabled: true
+    # storageClass: "-"
+    accessMode: ReadWriteOnce
+    size: 8Gi
+
+gitsync:
+  enabled: false
+  image: openweb/git-sync:0.0.1
+  repo: " "
+  branch: master
+  rev: FETCH_HEAD
+  destination: /content/repo
+  every: 600
+  authenticate: false
+  username: ""
+  password:
+    secret: raneto-gitsync
+    key: password
+  ssh: false
+  ssh_secret: raneto-gitsync-ssh
+  known_hosts: false
+
+raneto:
+  site_title: Raneto
+  base_url: ""
+  support_email: ""
+  category_sort: true
+  theme_name: default
+  authentication: true
+  authentication_for_edit: true
+  authentication_for_read: false
+  datetime_format: 'Do MMM YYYY'
+  home_meta:
+    title: Custom Home Title
+    description: Custom Home Description
+  table_of_contents: false
+  table_of_contents_options: {}
+  menu_on_pages: true
+  menu_on_page_collapsible: true

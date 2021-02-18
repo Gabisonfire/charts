@@ -10,6 +10,6 @@ keywords:
   - kanban
   - kanboard
 sources: 
-  - https://github.com/Gabisonfire/wekan-helm-chart
+  - https://github.com/Gabisonfire/charts/wekan
 maintainer:
   - name: Gabisonfire

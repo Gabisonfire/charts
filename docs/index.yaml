@@ -19,4 +19,21 @@ entries:
     urls:
     - https://gabisonfire.github.io/charts/wekan-0.1.0.tgz
     version: 0.1.0
+  raneto: 
+  - apiVersion: v2
+    appVersion: "0.16.6"
+    name: raneto
+    description: "Raneto is an open source Knowledgebase platform that uses static Markdown files to power your Knowledgebase."
+    version: 0.1.0
+    home: http://raneto.com/
+    icon: https://github.com/gilbitron/Raneto/blob/master/logo/logo.pnghttps://wekan.github.io/wekan-logo.svg
+    keywords:
+      - raneto
+      - flatfile
+      - wiki
+      - knowledgebase
+    sources: 
+      - https://github.com/Gabisonfire/charts/raneto
+    maintainer:
+      - name: Gabisonfire
 generated: "2020-08-01T22:42:45.661689762-04:00"

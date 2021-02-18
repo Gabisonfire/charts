@@ -1,0 +1,24 @@
+{{- if and .Values.persistence.content.enabled (not .Values.persistence.content.existingClaim) -}}
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: {{ template "raneto.fullname" . }}-content
+  labels:
+    app: {{ template "raneto.fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+spec:
+  accessModes:
+    - {{ .Values.persistence.content.accessMode | quote }}
+  resources:
+    requests:
+      storage: {{ .Values.persistence.content.size | quote }}
+{{- if .Values.persistence.content.storageClass }}
+{{- if (eq "-" .Values.persistence.content.storageClass) }}
+  storageClassName: ""
+{{- else }}
+  storageClassName: "{{ .Values.persistence.content.storageClass }}"
+{{- end }}
+{{- end }}
+{{- end }}

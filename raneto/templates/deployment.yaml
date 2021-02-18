@@ -1,0 +1,131 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "raneto.fullname" . }}
+  labels:
+    {{- include "raneto.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+{{- if .Values.strategy }}
+  strategy:
+{{ toYaml .Values.strategy | indent 4 }}
+{{- end }}  
+  selector:
+    matchLabels:
+      {{- include "raneto.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+    {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      labels:
+        {{- include "raneto.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "raneto.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}        
+          ports:
+            - name: http
+              containerPort: 3000
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+          - name: content
+            mountPath: /config/content
+          - name: images
+            mountPath: /config/images
+          - name: config
+            mountPath: /config/config.default.js
+            subPath: config.default.js
+        {{- if .Values.gitsync.enabled }}
+        - name: git-sync
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: {{ .Values.gitsync.image }}
+          volumeMounts:
+          - name: content
+            mountPath: /content
+          {{- if .Values.gitsync.ssh }}
+          - name: ssh_key
+            mountPath: /etc/git-secret
+          {{- end }}          
+          env:
+          - name: GIT_SYNC_REPO
+            value: {{ .Values.gitsync.repo | quote }}
+          - name: GIT_SYNC_BRANCH
+            value: {{ .Values.gitsync.branch | quote }}
+          - name: GIT_SYNC_REV
+            value: {{ .Values.gitsync.rev | quote }}            
+          - name: GIT_SYNC_DEST
+            value: "/content/{{ .Values.gitsync.destination }}"
+          - name: GIT_SYNC_WAIT
+            value: {{ .Values.gitsync.every | quote }}
+          - name: GIT_SYNC_USERNAME
+            value: {{ .Values.gitsync.username | quote }}
+          {{- if .Values.gitsync.authenticate }}
+          - name: GIT_SYNC_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.gitsync.password.secret }}
+                key:  {{ .Values.gitsync.password.key }}
+          {{- end }}
+          - name: GIT_SYNC_SSH
+            value: {{ .Values.gitsync.ssh | quote }}
+          - name: GIT_KNOWN_HOSTS
+            value: {{ .Values.gitsync.known_hosts | quote }}                                                                                            
+        {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      volumes:
+      - name: config
+        configMap:
+          name: {{ printf "%s-%s" (include "raneto.fullname" .) "config" }}
+      {{- if .Values.gitsync.ssh }}
+      - name: ssh_key
+        secret:
+          secretName: raneto-gitsync-ssh
+      {{- end }}
+      - name: content
+      {{- if .Values.persistence.content.enabled }}
+        persistentVolumeClaim:
+          claimName: {{ .Values.persistence.content.existingClaim | default (printf "%s-%s" (include "raneto.fullname" .) "content") }}
+      {{- else }}
+        emptyDir: {}
+      {{- end }}
+      - name: images
+      {{- if .Values.persistence.images.enabled }}
+        persistentVolumeClaim:
+          claimName: {{ .Values.persistence.images.existingClaim | default (printf "%s-%s" (include "raneto.fullname" .) "images") }}
+      {{- else }}
+        emptyDir: {}
+      {{- end -}}
