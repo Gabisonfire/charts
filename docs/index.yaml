@@ -17,7 +17,7 @@ entries:
     sources:
     - https://github.com/Gabisonfire/wekan-helm-chart
     urls:
-    - https://gabisonfire.github.io/charts/wekan-0.1.0.tgz
+    - https://gabisonfire.github.io/charts/wekan-0.1.1.tgz
     version: 0.1.1
   raneto: 
   - apiVersion: v2
@@ -36,5 +36,5 @@ entries:
     sources: 
       - https://github.com/Gabisonfire/charts/raneto
     urls:
-    - https://gabisonfire.github.io/charts/raneto-0.1.0.tgz
+    - https://gabisonfire.github.io/charts/raneto-0.1.1.tgz
 generated: "2020-08-01T22:42:45.661689762-04:00"
