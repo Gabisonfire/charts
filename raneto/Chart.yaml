@@ -4,7 +4,7 @@ description: "Raneto is an open source Knowledgebase platform that uses static M
 version: 0.1.0
 appVersion: 0.16.6
 home: http://raneto.com/
-icon: https://github.com/gilbitron/Raneto/blob/master/logo/logo.png
+icon: https://raw.githubusercontent.com/gilbitron/Raneto/master/logo/logo.png
 keywords:
   - raneto
   - flatfile
