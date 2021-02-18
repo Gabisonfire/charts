@@ -27,7 +27,7 @@ entries:
     description: "Raneto is an open source Knowledgebase platform that uses static Markdown files to power your Knowledgebase."
     version: 0.1.0
     home: http://raneto.com/
-    icon: https://github.com/gilbitron/Raneto/blob/master/logo/logo.pnghttps://wekan.github.io/wekan-logo.svg
+    icon: https://github.com/gilbitron/Raneto/blob/master/logo/logo.png
     keywords:
       - raneto
       - flatfile
