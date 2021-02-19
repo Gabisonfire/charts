@@ -1,9 +1,9 @@
-<html>
-  <head>
-    <title>Chart repo</title>
-  </head>
-  <body>
-    <h1>Gabisonfire's Charts Repo</h1>
-    <p>Point Helm at this repo to see charts.</p>
-  </body>
-</html>
+# Gabisonfire's Charts Repo
+
+
+Collection of helm charts.
+
+```
+$ helm repo add gabisonfire https://gabisonfire.github.io/charts/
+$ helm repo update
+```
