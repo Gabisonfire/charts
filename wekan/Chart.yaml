@@ -1,5 +1,5 @@
 apiVersion: v2
-name: wekan
+name: wekan-old
 description: "Wekan is an completely Open Source and Free software collaborative kanban board application with MIT license."
 version: 0.1.2
 appVersion: 4.22
