@@ -3,7 +3,7 @@ entries:
   raneto:
   - apiVersion: v2
     appVersion: 0.16.6
-    created: "2021-02-18T19:18:29.215614526-05:00"
+    created: "2021-10-12T20:02:52.697218816-04:00"
     description: Raneto is an open source Knowledgebase platform that uses static
       Markdown files to power your Knowledgebase.
     digest: 750eecb23d4bd5165de29d4d442f0e81412e47c8b552bb76bdf82b7af07883f0
@@ -20,10 +20,10 @@ entries:
     urls:
     - raneto-0.1.2.tgz
     version: 0.1.2
-  wekan:
+  wekan-old:
   - apiVersion: v2
     appVersion: "4.22"
-    created: "2021-02-18T19:18:29.216444717-05:00"
+    created: "2021-10-12T20:02:52.697846658-04:00"
     description: Wekan is an completely Open Source and Free software collaborative
       kanban board application with MIT license.
     digest: b5dae3b652db6cd99c033d62dde6ecbb1773d6fc6a4f261a4c847a7402cca2f1
@@ -33,10 +33,10 @@ entries:
     - wekan
     - kanban
     - kanboard
-    name: wekan
+    name: wekan-old
     sources:
     - https://github.com/Gabisonfire/charts/wekan
     urls:
     - wekan-0.1.2.tgz
     version: 0.1.2
-generated: "2021-02-18T19:18:29.214783291-05:00"
+generated: "2021-10-12T20:02:52.696467991-04:00"
