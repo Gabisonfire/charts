@@ -17,7 +17,7 @@ jobs:
         uses: bsord/helm-push@v4.1.0
         with:
           useOCIRegistry: true
-          registry-url:  oci://ghcr.io/Gabisonfire/charts
+          registry-url:  oci://ghcr.io/Gabisonfire
           username: gabisonfire
           access-token: ${{ secrets.GITHUB_TOKEN }}
           force: true
