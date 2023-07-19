@@ -1,0 +1,8 @@
+name: Invidious
+on: workflow_dispatch
+jobs:
+  steps:
+    - name: Check out invidious repo
+      uses: actions/checkout@master
+      with:
+        repository: iv-org/invidious
