@@ -1,7 +1,7 @@
 name: Invidious
 on: workflow_dispatch
 jobs:
-  checkout:
+  invidious-helm-build:
     runs-on: ubuntu-latest
     steps:
       - name: Check out invidious repo
@@ -11,6 +11,7 @@ jobs:
       - name: Get dependencies
         run: |
           cd kubernetes
+          helm repo add https://charts.bitnami.com/bitnami/
           helm dep build
       - name: Push Helm chart to OCI compatible registry (Github)
         uses: bsord/helm-push@v4.1.0
