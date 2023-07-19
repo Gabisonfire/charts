@@ -2,6 +2,7 @@ name: Invidious
 on: workflow_dispatch
 jobs:
   checkout:
+    runs-on: ubuntu-latest
     steps:
       - name: Check out invidious repo
         uses: actions/checkout@master
