@@ -15,6 +15,17 @@ jobs:
           cd kubernetes
           helm repo add bitnami https://charts.bitnami.com/bitnami/
           helm dep build
+          kubectl create configmap invidious-postgresql-init \
+            --from-file=../config/sql/channels.sql \
+            --from-file=../config/sql/videos.sql \
+            --from-file=../config/sql/channel_videos.sql \
+            --from-file=../config/sql/users.sql \
+            --from-file=../config/sql/session_ids.sql \
+            --from-file=../config/sql/nonces.sql \
+            --from-file=../config/sql/annotations.sql \
+            --from-file=../config/sql/playlists.sql \
+            --from-file=../config/sql/playlist_videos.sql --dry-run=client -o yaml > templates/invidious-postgresql-init-cm.yaml
+
       - name: push chart to registry
         uses: bsord/helm-push@v4.1.0
         with:
