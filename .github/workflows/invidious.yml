@@ -8,6 +8,10 @@ jobs:
         uses: actions/checkout@master
         with:
           repository: iv-org/invidious
+      - name: Get dependencies
+        run: |
+          cd kubernetes
+          helm dep build
       - name: Push Helm chart to OCI compatible registry (Github)
         uses: bsord/helm-push@v4.1.0
         with:
